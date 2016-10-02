@@ -1,0 +1,113 @@
+//HMTL
+
+<title>Google Maps API - ABF to Miss + GTA Traffic</title>
+
+<script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARQmuqwYrdxIhqDoZSIepLGULvhnvmEYk&callback=initMap">
+</script>
+
+<script type="text/javascript"></script>
+
+<body onload="initialize()">
+
+  <H1 align="center">Traffic Conditions
+    <h3 align="left">Aberfoyle to Mississauga</h3>
+      <div id="map_canvas"></div>
+    <h3 align="left">GTA</h3>
+      <div id="map_canvas_2"></div>
+
+
+//CSS
+body{
+    background-color:#AEB6BF;
+}
+h1{
+  font-family: Verdana;
+  font-variant:small-caps;
+  color:#154360;
+  padding:10px, 5px,1px,5px; 
+}
+h3{
+  font-family: Verdana;
+  padding:5px,5px,1px,5px;
+  color:#154360;
+}
+#map_canvas{
+  height:400px;
+  width:750;
+  padding:1px, 5px,5px,5px;
+  border:solid
+}
+#map_canvas_2{
+  height:400px;
+  width:750;
+  padding:1px, 5px,5px,5px;
+  border:solid
+}
+
+
+//JAVASCRIPT
+function initialize() {
+  var latlng = new google.maps.LatLng(43.518299, -79.877404);
+  var latlng2 = new google.maps.LatLng(43.761538, -79.411079);
+  var myOptions = {
+    zoom: 10,
+    center: latlng,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var myOptions2 = {
+    zoom: 10,
+    center: latlng2,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+  var map2 = new google.maps.Map(document.getElementById("map_canvas_2"), myOptions2);
+
+  var singleLatLng = {
+    lat: 43.460902,
+    lng: -80.135458
+  };
+
+  var singleLatLng2 = {
+    lat: 43.674703,
+    lng: -79.684999
+  };
+
+  var image = {
+    url: 'http://www.truckdriver.com/truckdriverimages/ProfileImages/201.jpg',
+    scaledSize: new google.maps.Size(100, 28),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(10, -8)
+  };
+
+  var image2 = {
+    url: 'http://www.truckdriver.com/truckdriverimages/ProfileImages/201.jpg',
+    scaledSize: new google.maps.Size(100, 28),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(50, 10)
+  };
+
+  var myMarker = new google.maps.Marker({
+    position: singleLatLng,
+    map: map,
+    icon: image,
+    title: "Abf"
+  });
+
+  var myMarker2 = new google.maps.Marker({
+    position: singleLatLng2,
+    map: map2,
+    icon: image2,
+    title: "Miss"
+  });
+
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map2);
+
+}
