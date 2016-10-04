@@ -1,5 +1,11 @@
 //HMTL
 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="900" >
+  <link type="text/css" rel="stylesheet" Aref="stylesheet.css"/>
+
 <title>Google Maps API - ABF to Miss + GTA Traffic</title>
 
 <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARQmuqwYrdxIhqDoZSIepLGULvhnvmEYk&callback=initMap">
@@ -9,11 +15,14 @@
 
 <body onload="initialize()">
 
-  <H1 align="center">Traffic Conditions
-    <h3 align="left">Aberfoyle to Mississauga</h3>
-      <div id="map_canvas"></div>
-    <h3 align="left">GTA</h3>
-      <div id="map_canvas_2"></div>
+  <H1 align="center">Traffic Conditions</h1>
+ <div>
+    <h3 align="center" style="width:45%; padding:2px; float: left">Aberfoyle to Mississauga</h3></div>   
+  <div>
+    <h3 align="center" style="width:45%; padding:2px; float: right">GTA</h3></div>     
+ <div id="map_canvas" style="top: 10px; left: 1px; width:48%; height:750px; float: left; border:solid"></div>
+ <div id="map_canvas_2" style="top: 10px; left: 1px; width:49%; height:750px; float: right; border:solid"></div>
+
 
 
 //CSS
@@ -24,31 +33,21 @@ h1{
   font-family: Verdana;
   font-variant:small-caps;
   color:#154360;
-  padding:10px, 5px,1px,5px; 
+  padding:10px, 5px,1px,5px;
+
 }
 h3{
   font-family: Verdana;
-  padding:5px,5px,1px,5px;
+  padding:5px,20px,1px,5px;
   color:#154360;
-}
-#map_canvas{
-  height:400px;
-  width:750;
-  padding:1px, 5px,5px,5px;
-  border:solid
-}
-#map_canvas_2{
-  height:400px;
-  width:750;
-  padding:1px, 5px,5px,5px;
-  border:solid
+  margin:0 20px 0 0;
 }
 
 
 //JAVASCRIPT
 function initialize() {
   var latlng = new google.maps.LatLng(43.518299, -79.877404);
-  var latlng2 = new google.maps.LatLng(43.761538, -79.411079);
+  var latlng2 = new google.maps.LatLng(43.758697,-79.43819);
   var myOptions = {
     zoom: 10,
     center: latlng,
@@ -57,7 +56,7 @@ function initialize() {
   };
 
   var myOptions2 = {
-    zoom: 10,
+    zoom: 11,
     center: latlng2,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -88,7 +87,7 @@ function initialize() {
     url: 'http://www.truckdriver.com/truckdriverimages/ProfileImages/201.jpg',
     scaledSize: new google.maps.Size(100, 28),
     origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(50, 10)
+    anchor: new google.maps.Point(45, 10)
   };
 
   var myMarker = new google.maps.Marker({
