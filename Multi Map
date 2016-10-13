@@ -15,13 +15,16 @@
 
 <body onload="initialize()">
 
-  <H1 align="center">Traffic Conditions</h1>
+ <H1 align="center">Traffic Conditions</h1>
  <div>
-    <h3 align="center" style="width:45%; padding:2px; float: left">Aberfoyle to Mississauga</h3></div>   
+    <h3 align="center" style="width:45%; padding:2px; float: left">Aberfoyle & GTA</h3></div>   
   <div>
-    <h3 align="center" style="width:45%; padding:2px; float: right">GTA</h3></div>     
- <div id="map_canvas" style="top: 10px; left: 1px; width:48%; height:750px; float: left; border:solid"></div>
- <div id="map_canvas_2" style="top: 10px; left: 1px; width:49%; height:750px; float: right; border:solid"></div>
+    <h3 align="center" style="width:45%; padding:2px; float: right">Borders</h3></div>     
+ <div id="map_canvas" style="top: 10px; left: 1px; width:60%; height:450px; float: left; border:solid"></div>
+ <div id="map_canvas_2" style="top: 10px; left: 1px; width:37%; height:450px; float: right; border:solid"></div>
+    
+<div id="map_canvas_3" style="top: 10px; left: 1px; width:60%; height:450px; float: left; border:solid"></div>
+  <div id="map_canvas_4" style="top: 10px; left: 1px; width:37%; height:450px; float: right; border:solid"></div>
 
 
 
@@ -47,7 +50,10 @@ h3{
 //JAVASCRIPT
 function initialize() {
   var latlng = new google.maps.LatLng(43.518299, -79.877404);
-  var latlng2 = new google.maps.LatLng(43.758697,-79.43819);
+  var latlng2 = new google.maps.LatLng(42.681868, -82.364502);
+  var latlng3 = new google.maps.LatLng(43.758697,-79.43819);
+  var latlng4 = new google.maps.LatLng(43.042516, -78.934021);
+  
   var myOptions = {
     zoom: 10,
     center: latlng,
@@ -56,8 +62,22 @@ function initialize() {
   };
 
   var myOptions2 = {
-    zoom: 11,
+    zoom: 9,
     center: latlng2,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+  var myOptions3 = {
+    zoom: 11,
+    center: latlng3,
+    disableDefaultUI: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+  var myOptions4 = {
+    zoom: 10,
+    center: latlng4,
     disableDefaultUI: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -65,6 +85,10 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
   var map2 = new google.maps.Map(document.getElementById("map_canvas_2"), myOptions2);
+  
+  var map3 = new google.maps.Map(document.getElementById("map_canvas_3"), myOptions3);
+  
+  var map4 = new google.maps.Map(document.getElementById("map_canvas_4"), myOptions4);
 
   var singleLatLng = {
     lat: 43.460902,
@@ -74,6 +98,16 @@ function initialize() {
   var singleLatLng2 = {
     lat: 43.674703,
     lng: -79.684999
+  };
+  
+  var singleLatLng3 = {
+    lat: 42.331427,
+    lng: -83.045754
+  };
+  
+  var singleLatLng4 = {
+    lat: 42.889478, 
+    lng: -78.888702
   };
 
   var image = {
@@ -98,15 +132,36 @@ function initialize() {
   });
 
   var myMarker2 = new google.maps.Marker({
-    position: singleLatLng2,
+    position: singleLatLng3,
     map: map2,
+    icon: image2,
+    title: "Det"
+  });
+  
+  var myMarker3 = new google.maps.Marker({
+    position: singleLatLng2,
+    map: map3,
     icon: image2,
     title: "Miss"
   });
+
+  var myMarker2 = new google.maps.Marker({
+    position: singleLatLng2,
+    map: map2,
+    icon: image2,
+    title: "Buf"
+  });
+
 
   var trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
   var trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map2);
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map3);
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map4);
 
 }
+
+
